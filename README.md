@@ -1,30 +1,17 @@
 # Site institucional — Debora de Almeida Advogada
 
-Site de uma página (React + Vite + Tailwind) da advogada Debora de Almeida — Direito Civil e Imobiliário, São José dos Campos/SP.
+Site de uma página em um único arquivo HTML (`index.html`), publicado direto pelo GitHub Pages, sem etapa de compilação.
 
-## Desenvolvimento
-
-```bash
-pnpm install
-pnpm dev        # servidor local
-pnpm build      # gera a pasta dist/
-```
-
-## Publicação (GitHub Pages)
-
-Todo push na branch `main` executa `.github/workflows/deploy.yml`, que compila o site e publica no GitHub Pages.
+## Publicação
+*Settings > Pages > Build and deployment*: **Source = Deploy from a branch**, **Branch = main**, pasta **/ (root)**.
 
 ### Domínio próprio
 1. Em *Settings > Pages > Custom domain*, informe o domínio e marque *Enforce HTTPS*.
-2. No DNS do domínio, aponte para o GitHub Pages (registros A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` para o domínio raiz e CNAME `www` para `<usuario>.github.io`). Mantenha os registros de e-mail (MX) existentes.
+2. No DNS do domínio, aponte para o GitHub Pages: registros A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (domínio raiz) e CNAME `www` para `aalvesstos-lab.github.io`. Mantenha os registros de e-mail (MX).
 
 ## Formulário de contato
+O envio é feito por um Google Apps Script (`apps-script/`). Depois de implantá-lo, coloque a URL `/exec` na constante `ENDPOINT` (procure por `ENDPOINT` no `index.html`).
+**Enquanto `ENDPOINT` estiver vazio, o formulário apenas simula o envio (modo demonstração).**
 
-O envio é feito por um Google Apps Script (pasta `apps-script/`). Depois de implantar o script, cole a URL `/exec` na constante `ENDPOINT` em `src/App.tsx`.
-**Enquanto `ENDPOINT` estiver vazio, o formulário apenas simula o envio (modo demonstração): não publique no domínio definitivo sem preenchê-la.**
-
-- `apps-script/Etapa1-email.gs`: envia as solicitações por e-mail.
-- `apps-script/Etapa2-Leads.gs`: grava na aba "Leads" do CRM e exibe no painel (etapa futura).
-
-## Conteúdo
-Textos, áreas de atuação e dados de contato ficam no topo de `src/App.tsx` (objeto `C`).
+## Código-fonte
+A pasta `fonte/` tem o projeto React + Vite que gera o `index.html` (`pnpm install && pnpm build`). O arquivo da raiz é o resultado final já empacotado.
