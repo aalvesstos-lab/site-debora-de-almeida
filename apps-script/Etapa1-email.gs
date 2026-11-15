@@ -7,6 +7,7 @@
 
 const EMAIL_DESTINO = 'contato@deboradealmeida.adv.br';
 const EMAIL_TESTE = 'aalvesstos@gmail.com'; // usado só pela função autorizar()
+const ICONES = 'https://aalvesstos-lab.github.io/site-debora-de-almeida/email/'; // ícones dos botões
 
 function doPost(e) {
   try {
@@ -56,9 +57,11 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
   const linha = (rot, val) =>
     '<tr><td style="padding:10px 0;border-bottom:1px solid #eadfce;color:#9b7243;font-size:12px;text-transform:uppercase;letter-spacing:.1em;width:110px;vertical-align:top">' + rot +
     '</td><td style="padding:10px 0;border-bottom:1px solid #eadfce;color:#141413;font-size:15px">' + val + '</td></tr>';
-  const botao = (href, txt, cor, txtCor) =>
+  const botao = (href, txt, cor, txtCor, borda, icone) =>
     '<a href="' + href + '" style="display:inline-block;margin:4px 6px 4px 0;padding:11px 18px;background:' + cor +
-    ';color:' + txtCor + ';text-decoration:none;border-radius:6px;font-size:14px;font-weight:bold;border:1px solid #c9a06b">' + txt + '</a>';
+    ';color:' + txtCor + ';text-decoration:none;border-radius:6px;font-size:14px;font-weight:bold;border:1px solid ' + borda + '">' +
+    '<img src="' + ICONES + icone + '.png" width="18" height="18" alt="" style="vertical-align:middle;margin-right:8px;border:0">' +
+    '<span style="vertical-align:middle">' + txt + '</span></a>';
 
   return '<div style="background:#efe8dc;padding:24px 12px;font-family:Arial,Helvetica,sans-serif">' +
     '<div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:10px;overflow:hidden;border:1px solid #c9a06b">' +
@@ -72,9 +75,9 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
     linha('Recebido', h(quando)) +
     '</table>' +
     '<div style="margin-top:20px">' +
-    botao(linkWa, 'Chamar no WhatsApp', '#0a0a0a', '#c9a06b') +
-    botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a') +
-    botao(linkTel, 'Ligar', '#9b7243', '#ffffff') +
+    botao(linkWa, 'Chamar no WhatsApp', '#25d366', '#ffffff', '#25d366', 'wa') +
+    botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a', '#c9a06b', 'mail') +
+    botao(linkTel, 'Ligar', '#9b7243', '#ffffff', '#9b7243', 'tel') +
     '</div>' +
     '<p style="margin:18px 0 0;color:#9b7243;font-size:12px">Aceite da Política de Privacidade: sim. Ao usar "Responder", a resposta vai direto para o e-mail do contato.</p>' +
     '</div></div></div>';
