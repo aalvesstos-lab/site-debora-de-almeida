@@ -8,11 +8,6 @@
 const EMAIL_DESTINO = 'contato@deboradealmeida.adv.br';
 const EMAIL_TESTE = 'aalvesstos@gmail.com'; // usado só pela função autorizar()
 
-// Aviso no WhatsApp via CallMeBot (gratuito). Só funciona depois que o número ativar o serviço e
-// receber a apikey (callmebot.com/blog/free-api-whatsapp-messages). Enquanto ativo=false, nada é enviado.
-// Formato do telefone: 55DDDNUMERO. No repositório público fica vazio; o valor real só no Apps Script.
-const WHATSAPP_AVISO = { ativo: false, telefone: '', apikey: '' };
-
 function doPost(e) {
   try {
     const d = JSON.parse(e.postData.contents);
@@ -50,8 +45,6 @@ function doPost(e) {
       htmlBody: montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, linkTel)
     });
 
-    try { avisoWhatsApp_(nome, telefone); } catch (errWa) { Logger.log('Aviso WhatsApp falhou: ' + errWa); }
-
     return resposta({ ok: true });
   } catch (err) {
     return resposta({ ok: false, erro: String(err) });
@@ -85,13 +78,6 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
     '</div>' +
     '<p style="margin:18px 0 0;color:#8a7a5a;font-size:12px">Aceite da Política de Privacidade: sim. Ao usar "Responder", a resposta vai direto para o e-mail do contato.</p>' +
     '</div></div></div>';
-}
-
-function avisoWhatsApp_(nome, telefone) {
-  if (!WHATSAPP_AVISO.ativo || !WHATSAPP_AVISO.telefone || !WHATSAPP_AVISO.apikey) return;
-  const msg = 'Novo contato pelo site: ' + nome + ' - ' + telefone + '. Os detalhes estão no seu e-mail.';
-  UrlFetchApp.fetch('https://api.callmebot.com/whatsapp.php?phone=' + encodeURIComponent(WHATSAPP_AVISO.telefone) +
-    '&text=' + encodeURIComponent(msg) + '&apikey=' + encodeURIComponent(WHATSAPP_AVISO.apikey), { muteHttpExceptions: true });
 }
 
 // Rode uma vez no editor para autorizar e conferir o e-mail de teste.
