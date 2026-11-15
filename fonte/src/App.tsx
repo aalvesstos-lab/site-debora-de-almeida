@@ -159,7 +159,7 @@ const L = {
 }
 
 // URL do Google Apps Script (implantado como app da web). Enquanto vazio, o site funciona em modo demonstração.
-const ENDPOINT = ''
+const ENDPOINT: string = (typeof window !== 'undefined' && (window as unknown as { SITE_ENDPOINT?: string }).SITE_ENDPOINT) || ''
 
 export default function App() {
   const root = useRef<HTMLDivElement>(null)
