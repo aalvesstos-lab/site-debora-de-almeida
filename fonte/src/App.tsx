@@ -169,7 +169,7 @@ export default function App() {
   const [form, setForm] = useState({ nome: '', telefone: '', email: '', assunto: '' })
   const [erros, setErros] = useState<Record<string, string>>({})
   const [pronto, setPronto] = useState(false)
-  const [enviando, setEnviando] = useState(false)
+  const enviando = false
   const [falhou, setFalhou] = useState(false)
   const [isca, setIsca] = useState('')
   const [aceite, setAceite] = useState(false)
@@ -212,19 +212,19 @@ export default function App() {
     setFalhou(false)
     if (isca) { setPronto(true); return } // robô: finge sucesso
     if (!ENDPOINT) { setPronto(true); return } // modo demonstração
-    setEnviando(true)
+    // Resposta imediata: o Apps Script pode levar alguns segundos para responder (partida a frio),
+    // então confirmamos já e enviamos em segundo plano. Se a rede falhar, voltamos ao formulário com o aviso.
     try {
-      await fetch(ENDPOINT, {
+      fetch(ENDPOINT, {
         method: 'POST',
         mode: 'no-cors',
+        keepalive: true,
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({ ...form, aceite: true, origem: window.location.href, enviadoEm: new Date().toISOString() }),
-      })
+      }).catch(() => { setPronto(false); setFalhou(true) })
       setPronto(true)
     } catch {
       setFalhou(true)
-    } finally {
-      setEnviando(false)
     }
   }
 
