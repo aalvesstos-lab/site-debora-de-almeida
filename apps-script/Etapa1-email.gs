@@ -54,29 +54,29 @@ function doPost(e) {
 function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, linkTel) {
   const h = esc;
   const linha = (rot, val) =>
-    '<tr><td style="padding:10px 0;border-bottom:1px solid #eee;color:#8a7a5a;font-size:12px;text-transform:uppercase;letter-spacing:.08em;width:110px;vertical-align:top">' + rot +
-    '</td><td style="padding:10px 0;border-bottom:1px solid #eee;color:#1f1f1f;font-size:15px">' + val + '</td></tr>';
-  const botao = (href, txt, cor) =>
+    '<tr><td style="padding:10px 0;border-bottom:1px solid #eadfce;color:#9b7243;font-size:12px;text-transform:uppercase;letter-spacing:.1em;width:110px;vertical-align:top">' + rot +
+    '</td><td style="padding:10px 0;border-bottom:1px solid #eadfce;color:#141413;font-size:15px">' + val + '</td></tr>';
+  const botao = (href, txt, cor, txtCor) =>
     '<a href="' + href + '" style="display:inline-block;margin:4px 6px 4px 0;padding:11px 18px;background:' + cor +
-    ';color:#ffffff;text-decoration:none;border-radius:6px;font-size:14px;font-weight:bold">' + txt + '</a>';
+    ';color:' + txtCor + ';text-decoration:none;border-radius:6px;font-size:14px;font-weight:bold;border:1px solid #c9a06b">' + txt + '</a>';
 
-  return '<div style="background:#f4f1ea;padding:24px 12px;font-family:Arial,Helvetica,sans-serif">' +
-    '<div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:10px;overflow:hidden;border:1px solid #e6dfcf">' +
-    '<div style="background:#1b2a3a;padding:20px 24px"><div style="color:#c9a961;font-size:12px;letter-spacing:.14em;text-transform:uppercase">Novo contato pelo site</div>' +
-    '<div style="color:#ffffff;font-size:20px;margin-top:6px">' + h(nome) + '</div></div>' +
+  return '<div style="background:#efe8dc;padding:24px 12px;font-family:Arial,Helvetica,sans-serif">' +
+    '<div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:10px;overflow:hidden;border:1px solid #c9a06b">' +
+    '<div style="background:#0a0a0a;padding:22px 24px;border-bottom:3px solid #c9a06b"><div style="color:#c9a06b;font-size:12px;letter-spacing:.16em;text-transform:uppercase">Novo contato pelo site</div>' +
+    '<div style="color:#ecc99a;font-family:Georgia,serif;font-size:24px;margin-top:6px">' + h(nome) + '</div></div>' +
     '<div style="padding:20px 24px">' +
     '<table role="presentation" style="width:100%;border-collapse:collapse">' +
-    linha('Telefone', '<a href="' + linkTel + '" style="color:#1b2a3a;text-decoration:none">' + h(telefone) + '</a>') +
-    linha('E-mail', '<a href="mailto:' + h(email) + '" style="color:#1b2a3a">' + h(email) + '</a>') +
+    linha('Telefone', '<a href="' + linkTel + '" style="color:#141413;text-decoration:none">' + h(telefone) + '</a>') +
+    linha('E-mail', '<a href="mailto:' + h(email) + '" style="color:#141413">' + h(email) + '</a>') +
     linha('Assunto', h(assunto).replace(/\n/g, '<br>')) +
     linha('Recebido', h(quando)) +
     '</table>' +
     '<div style="margin-top:20px">' +
-    botao(linkWa, 'Chamar no WhatsApp', '#25a244') +
-    botao(linkEmail, 'Responder por e-mail', '#1b2a3a') +
-    botao(linkTel, 'Ligar', '#8a6d2b') +
+    botao(linkWa, 'Chamar no WhatsApp', '#0a0a0a', '#c9a06b') +
+    botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a') +
+    botao(linkTel, 'Ligar', '#9b7243', '#ffffff') +
     '</div>' +
-    '<p style="margin:18px 0 0;color:#8a7a5a;font-size:12px">Aceite da Política de Privacidade: sim. Ao usar "Responder", a resposta vai direto para o e-mail do contato.</p>' +
+    '<p style="margin:18px 0 0;color:#9b7243;font-size:12px">Aceite da Política de Privacidade: sim. Ao usar "Responder", a resposta vai direto para o e-mail do contato.</p>' +
     '</div></div></div>';
 }
 
