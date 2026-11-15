@@ -301,7 +301,13 @@ export default function App() {
               <span className="l2">{H.nome[1]}</span>
             </h1>
             <div className="lead">{H.paragrafos.map((p) => <p key={p}>{p}</p>)}</div>
-            <a className="btn" href={temWa ? ct.whatsapp[1] : '#contato'}>{C.cta} <span>→</span></a>
+            <a className="btn" href="#formulario" onClick={(e) => {
+              e.preventDefault()
+              const f = document.getElementById('formulario')
+              if (!f) return
+              f.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              setTimeout(() => f.querySelector('input')?.focus({ preventScroll: true }), 800)
+            }}>{C.cta} <span>→</span></a>
           </div>
           <div className="portrait">
             <div className="ring two" /><div className="ring" />
@@ -393,7 +399,7 @@ export default function App() {
               ))}
             </ul>
           </div>
-          <div className="side">
+          <div className="side" id="formulario">
             {!pronto ? (
               <form className="cform" noValidate onSubmit={(e) => { e.preventDefault(); enviar() }} onKeyDown={(e) => { if (e.key === 'Enter' && (e.target as HTMLElement).tagName === 'INPUT') { e.preventDefault(); enviar() } }}>
                 <div className="eyebrow">Solicitar contato</div>
