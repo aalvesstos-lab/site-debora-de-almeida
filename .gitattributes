@@ -1,0 +1,4 @@
+# O site publicado é o index.html da raiz; o restante não conta na linguagem do repositório
+fonte/** linguist-vendored
+apps-script/** linguist-documentation
+index.html linguist-detectable=true
