@@ -137,6 +137,7 @@ footer{position:absolute;inset:auto 0 0 0;z-index:5;height:36px;display:flex;ali
 .actions{display:flex;gap:14px;flex-wrap:wrap}
 .actions .btn{margin-top:6px;cursor:pointer;font-family:var(--sans);background:transparent}
 .btn.ghost{border-color:var(--line);color:var(--ink)}
+.btn,.cform .submit,.actions .btn{background:var(--gold-grad);color:#0a0a0a;border-color:#b78a55;font-weight:500}.btn:hover,.cform .submit:hover{color:#0a0a0a;filter:brightness(1.1)}.btn::before{display:none}.cform .submit:disabled{opacity:.6;cursor:default}.cform .back{align-self:flex-start;background:var(--gold-grad);color:#0a0a0a;border:1px solid #b78a55;font-weight:500;padding:14px 24px;letter-spacing:.24em}.cform .back:hover{color:#0a0a0a;filter:brightness(1.1)}
 .back{align-self:flex-start;background:none;border:0;color:var(--mute);font:400 .68rem var(--sans);letter-spacing:.22em;text-transform:uppercase;cursor:pointer;padding:4px 0}
 .back:hover{color:var(--gold-light)}
 .field input:focus-visible,.field textarea:focus-visible,.btn:focus-visible,.back:focus-visible{outline:1px dashed var(--gold);outline-offset:4px}
