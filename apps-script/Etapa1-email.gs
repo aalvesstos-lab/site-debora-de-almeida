@@ -5,7 +5,7 @@
  * COMO USAR
  * 1. Entre com a conta Google que vai enviar os e-mails e acesse https://script.new
  * 2. Apague o conteúdo e cole este arquivo. Dê o nome "Site - Contato" ao projeto.
- * 3. Confira EMAIL_DESTINO abaixo.
+ * 3. Confira EMAIL_DESTINO abaixo (por enquanto é o e-mail de teste).
  * 4. Selecione a função "autorizar" no topo e clique em Executar. Aceite as permissões
  *    (envio de e-mail). Chegará um e-mail de teste na caixa de destino.
  * 5. Implantar > Nova implantação > tipo "App da Web"
@@ -17,7 +17,7 @@
  * Assim a URL continua a mesma.
  */
 
-const EMAIL_DESTINO = 'contato@deboradealmeida.adv.br';
+const EMAIL_DESTINO = 'aalvesstos@gmail.com'; // TESTE: trocar por contato@deboradealmeida.adv.br depois de validar
 
 function doPost(e) {
   try {
