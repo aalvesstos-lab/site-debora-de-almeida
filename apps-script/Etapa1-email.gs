@@ -59,11 +59,10 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
   const linha = (rot, val) =>
     '<tr><td width="110" valign="top" style="padding:10px 0;border-bottom:1px solid #eadfce;color:#9b7243;font-size:12px;' + F + 'text-transform:uppercase;letter-spacing:1px">' + rot +
     '</td><td valign="top" style="padding:10px 0;border-bottom:1px solid #eadfce;color:#141413;font-size:15px;' + F + '">' + val + '</td></tr>';
-  const botao = (href, txt, cor, txtCor, icone) =>
-    '<td width="49%" bgcolor="' + cor + '" align="center" style="background-color:' + cor + ';border:1px solid ' + cor + ';padding:11px 18px;' + F + 'font-size:14px;font-weight:bold">' +
-    '<a href="' + href + '" style="color:' + txtCor + ';text-decoration:none;' + F + 'font-size:14px;font-weight:bold">' +
-    '<img src="' + ICONES + icone + '.png" width="18" height="18" alt="" border="0" style="vertical-align:middle;border:0">&nbsp;' +
-    txt + '</a></td>';
+  // Botão "à prova de Outlook": sem imagem, cor do texto fixada em <font> e <span>, altura fixa
+  const botao = (href, txt, cor, txtCor) =>
+    '<td width="49%" height="46" bgcolor="' + cor + '" align="center" valign="middle" style="background-color:' + cor + ';border:1px solid ' + cor + ';height:46px;padding:0 10px;' + F + 'font-size:14px;font-weight:bold;mso-line-height-rule:exactly;line-height:46px">' +
+    '<a href="' + href + '" style="color:' + txtCor + ';text-decoration:none;' + F + 'font-size:14px;font-weight:bold"><font color="' + txtCor + '"><span style="color:' + txtCor + ';text-decoration:none">' + txt + '</span></font></a></td>';
 
   return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#efe8dc" style="background-color:#efe8dc"><tr><td align="center" style="padding:24px 12px">' +
     '<table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:560px;background-color:#ffffff;border:1px solid #c9a06b">' +
@@ -78,9 +77,9 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
     linha('Recebido', h(quando)) +
     '</table>' +
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:22px"><tr>' +
-    botao(linkWa, 'Chamar no WhatsApp', '#25d366', '#ffffff', 'wa') +
+    botao(linkWa, 'Chamar no WhatsApp', '#25d366', '#ffffff') +
     '<td width="2%" style="font-size:0;line-height:0">&nbsp;</td>' +
-    botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a', 'mail') +
+    botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a') +
     '</tr></table>' +
     '<p style="margin:18px 0 0;color:#9b7243;font-size:12px;' + F + '">Aceite da Política de Privacidade: sim. Ao usar "Responder", a resposta vai direto para o e-mail do contato.</p>' +
     '</td></tr></table></td></tr></table>';
