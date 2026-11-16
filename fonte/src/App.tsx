@@ -391,6 +391,7 @@ export default function App() {
                   {href ? (
                     <a href={href} target={href.startsWith('http') || (emMoldura && href.startsWith('mailto')) ? '_blank' : undefined} rel="noreferrer">
                       <small>{lb}</small><span>{tx}</span>
+                      {lb === 'Escritório' && <em className="vermapa">Ver no Google Maps →</em>}
                     </a>
                   ) : (
                     <div><small>{lb}</small><span>{tx || '\u00A0'}</span></div>

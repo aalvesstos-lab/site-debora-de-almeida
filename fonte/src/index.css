@@ -293,3 +293,5 @@ section.help::before{background:linear-gradient(180deg,rgba(10,10,10,.8),rgba(10
 
 
 #formulario{scroll-margin-top:96px}
+
+.contact .vermapa{display:inline-block;margin-top:10px;font-style:normal;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-light);border-bottom:1px solid var(--gold);padding-bottom:2px;transition:color .3s}.contact li:hover .vermapa{color:var(--gold)}
