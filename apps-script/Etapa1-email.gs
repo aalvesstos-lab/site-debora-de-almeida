@@ -60,7 +60,7 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
     '<tr><td width="110" valign="top" style="padding:10px 0;border-bottom:1px solid #eadfce;color:#9b7243;font-size:12px;' + F + 'text-transform:uppercase;letter-spacing:1px">' + rot +
     '</td><td valign="top" style="padding:10px 0;border-bottom:1px solid #eadfce;color:#141413;font-size:15px;' + F + '">' + val + '</td></tr>';
   const botao = (href, txt, cor, txtCor, icone) =>
-    '<td bgcolor="' + cor + '" align="center" style="background-color:' + cor + ';border:1px solid ' + cor + ';padding:11px 18px;' + F + 'font-size:14px;font-weight:bold">' +
+    '<td width="49%" bgcolor="' + cor + '" align="center" style="background-color:' + cor + ';border:1px solid ' + cor + ';padding:11px 18px;' + F + 'font-size:14px;font-weight:bold">' +
     '<a href="' + href + '" style="color:' + txtCor + ';text-decoration:none;' + F + 'font-size:14px;font-weight:bold">' +
     '<img src="' + ICONES + icone + '.png" width="18" height="18" alt="" border="0" style="vertical-align:middle;border:0">&nbsp;' +
     txt + '</a></td><td width="10" style="font-size:0;line-height:0">&nbsp;</td>';
@@ -77,8 +77,9 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
     linha('Assunto', h(assunto).replace(/\n/g, '<br>')) +
     linha('Recebido', h(quando)) +
     '</table>' +
-    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:20px"><tr>' +
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:22px"><tr>' +
     botao(linkWa, 'Chamar no WhatsApp', '#25d366', '#ffffff', 'wa') +
+    '<td width="2%" style="font-size:0;line-height:0">&nbsp;</td>' +
     botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a', 'mail') +
     '</tr></table>' +
     '<p style="margin:18px 0 0;color:#9b7243;font-size:12px;' + F + '">Aceite da Política de Privacidade: sim. Ao usar "Responder", a resposta vai direto para o e-mail do contato.</p>' +
