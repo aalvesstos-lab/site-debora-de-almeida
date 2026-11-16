@@ -314,7 +314,6 @@ export default function App() {
             <div className="ph"><img src={foto3} alt="Debora de Almeida" /></div>
           </div>
         </div>
-        <div className="scroll-hint"><i />Role</div>
       </section>
 
       <section className="about" id="sobre">
