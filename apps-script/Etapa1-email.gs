@@ -63,7 +63,7 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
     '<td width="49%" bgcolor="' + cor + '" align="center" style="background-color:' + cor + ';border:1px solid ' + cor + ';padding:11px 18px;' + F + 'font-size:14px;font-weight:bold">' +
     '<a href="' + href + '" style="color:' + txtCor + ';text-decoration:none;' + F + 'font-size:14px;font-weight:bold">' +
     '<img src="' + ICONES + icone + '.png" width="18" height="18" alt="" border="0" style="vertical-align:middle;border:0">&nbsp;' +
-    txt + '</a></td><td width="10" style="font-size:0;line-height:0">&nbsp;</td>';
+    txt + '</a></td>';
 
   return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#efe8dc" style="background-color:#efe8dc"><tr><td align="center" style="padding:24px 12px">' +
     '<table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:560px;background-color:#ffffff;border:1px solid #c9a06b">' +
