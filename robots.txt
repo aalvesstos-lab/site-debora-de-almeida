@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aalvesstos-lab.github.io/site-debora-de-almeida/sitemap.xml
+Sitemap: https://deboradealmeida.adv.br/sitemap.xml
