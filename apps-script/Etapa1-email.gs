@@ -53,34 +53,36 @@ function doPost(e) {
 }
 
 function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, linkTel) {
+  // Layout em tabelas (compatível com Outlook desktop/Word, Outlook.com e Gmail)
   const h = esc;
+  const F = 'font-family:Arial,Helvetica,sans-serif;';
   const linha = (rot, val) =>
-    '<tr><td style="padding:10px 0;border-bottom:1px solid #eadfce;color:#9b7243;font-size:12px;text-transform:uppercase;letter-spacing:.1em;width:110px;vertical-align:top">' + rot +
-    '</td><td style="padding:10px 0;border-bottom:1px solid #eadfce;color:#141413;font-size:15px">' + val + '</td></tr>';
-  const botao = (href, txt, cor, txtCor, borda, icone) =>
-    '<a href="' + href + '" style="display:inline-block;margin:4px 6px 4px 0;padding:11px 18px;background:' + cor +
-    ';color:' + txtCor + ';text-decoration:none;border-radius:6px;font-size:14px;font-weight:bold;border:1px solid ' + borda + '">' +
-    '<img src="' + ICONES + icone + '.png" width="18" height="18" alt="" style="vertical-align:middle;margin-right:8px;border:0">' +
-    '<span style="vertical-align:middle">' + txt + '</span></a>';
+    '<tr><td width="110" valign="top" style="padding:10px 0;border-bottom:1px solid #eadfce;color:#9b7243;font-size:12px;' + F + 'text-transform:uppercase;letter-spacing:1px">' + rot +
+    '</td><td valign="top" style="padding:10px 0;border-bottom:1px solid #eadfce;color:#141413;font-size:15px;' + F + '">' + val + '</td></tr>';
+  const botao = (href, txt, cor, txtCor, icone) =>
+    '<td bgcolor="' + cor + '" align="center" style="background-color:' + cor + ';border:1px solid ' + cor + ';padding:11px 18px;' + F + 'font-size:14px;font-weight:bold">' +
+    '<a href="' + href + '" style="color:' + txtCor + ';text-decoration:none;' + F + 'font-size:14px;font-weight:bold">' +
+    '<img src="' + ICONES + icone + '.png" width="18" height="18" alt="" border="0" style="vertical-align:middle;border:0">&nbsp;' +
+    txt + '</a></td><td width="10" style="font-size:0;line-height:0">&nbsp;</td>';
 
-  return '<div style="background:#efe8dc;padding:24px 12px;font-family:Arial,Helvetica,sans-serif">' +
-    '<div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:10px;overflow:hidden;border:1px solid #c9a06b">' +
-    '<div style="background:#0a0a0a;padding:22px 24px;border-bottom:3px solid #c9a06b"><div style="color:#c9a06b;font-size:12px;letter-spacing:.16em;text-transform:uppercase">Novo contato pelo site</div>' +
-    '<div style="color:#ecc99a;font-family:Georgia,serif;font-size:24px;margin-top:6px">' + h(nome) + '</div></div>' +
-    '<div style="padding:20px 24px">' +
-    '<table role="presentation" style="width:100%;border-collapse:collapse">' +
-    linha('Telefone', '<a href="' + linkTel + '" style="color:#141413;text-decoration:none">' + h(telefone) + '</a>') +
+  return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#efe8dc" style="background-color:#efe8dc"><tr><td align="center" style="padding:24px 12px">' +
+    '<table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:560px;background-color:#ffffff;border:1px solid #c9a06b">' +
+    '<tr><td bgcolor="#0a0a0a" style="background-color:#0a0a0a;padding:22px 24px;border-bottom:3px solid #c9a06b">' +
+    '<div style="color:#c9a06b;font-size:12px;letter-spacing:2px;text-transform:uppercase;' + F + '">Novo contato pelo site</div>' +
+    '<div style="color:#ecc99a;font-family:Georgia,\'Times New Roman\',serif;font-size:24px;padding-top:6px">' + h(nome) + '</div></td></tr>' +
+    '<tr><td style="padding:20px 24px">' +
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">' +
+    linha('Telefone', h(telefone)) +
     linha('E-mail', '<a href="mailto:' + h(email) + '" style="color:#141413">' + h(email) + '</a>') +
     linha('Assunto', h(assunto).replace(/\n/g, '<br>')) +
     linha('Recebido', h(quando)) +
     '</table>' +
-    '<div style="margin-top:20px">' +
-    botao(linkWa, 'Chamar no WhatsApp', '#25d366', '#ffffff', '#25d366', 'wa') +
-    botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a', '#c9a06b', 'mail') +
-    botao(linkTel, 'Ligar', '#9b7243', '#ffffff', '#9b7243', 'tel') +
-    '</div>' +
-    '<p style="margin:18px 0 0;color:#9b7243;font-size:12px">Aceite da Política de Privacidade: sim. Ao usar "Responder", a resposta vai direto para o e-mail do contato.</p>' +
-    '</div></div></div>';
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:20px"><tr>' +
+    botao(linkWa, 'Chamar no WhatsApp', '#25d366', '#ffffff', 'wa') +
+    botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a', 'mail') +
+    '</tr></table>' +
+    '<p style="margin:18px 0 0;color:#9b7243;font-size:12px;' + F + '">Aceite da Política de Privacidade: sim. Ao usar "Responder", a resposta vai direto para o e-mail do contato.</p>' +
+    '</td></tr></table></td></tr></table>';
 }
 
 // Rode uma vez no editor para autorizar e conferir o e-mail de teste.
