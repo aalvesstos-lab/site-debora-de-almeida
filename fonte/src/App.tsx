@@ -95,7 +95,7 @@ const C = {
     instagram: ['@debora_almeida_adv', 'https://instagram.com/debora_almeida_adv'],
     endereco: [
       'Edifício Atrium\nRua Professora Francisca Maria de Jesus, 347, sala 106, Floradas de São José/Satélite, São José dos Campos/SP',
-      'https://www.google.com/search?q=Debora+de+Almeida+Advogada+-+Rua+Francisca+Maria+de+Jesus+-+Floradas+de+S%C3%A3o+Jos%C3%A9%2C+S%C3%A3o+Jos%C3%A9+dos+Campos+-+SP',
+      'https://www.google.com/maps/place/Debora+de+Almeida+Advogada/data=!4m2!3m1!1s0x0:0x7219df5d28e35c3c',
     ],
   },
 }
