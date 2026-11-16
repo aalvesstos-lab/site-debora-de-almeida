@@ -254,10 +254,10 @@ export default function App() {
       })
 
       gsap.from('.skills-head > *', { y: 40, opacity: 0, duration: 1, ease: E, stagger: 0.12, scrollTrigger: { trigger: '.skills-head', start: 'top 85%' } })
-      gsap.from('.card', { y: 40, opacity: 0, duration: 1, ease: E, stagger: 0.12, clearProps: 'transform,opacity', scrollTrigger: { trigger: '.cards', start: 'top 82%' } })
+      gsap.from('.skills .card', { y: 40, opacity: 0, duration: 1, ease: E, stagger: 0.12, clearProps: 'transform,opacity', scrollTrigger: { trigger: '.skills .cards', start: 'top 82%' } })
 
       gsap.from('.help .head > *', { y: 36, opacity: 0, duration: 1, ease: E, stagger: 0.12, scrollTrigger: { trigger: '.help', start: 'top 70%' } })
-      gsap.from('.box', { scale: 1.06, opacity: 0, duration: 1.2, ease: E, stagger: 0.15, clearProps: 'transform,opacity', scrollTrigger: { trigger: '.help-grid', start: 'top 82%' } })
+      gsap.from('.help .card', { y: 40, opacity: 0, duration: 1, ease: E, stagger: 0.12, clearProps: 'transform,opacity', scrollTrigger: { trigger: '.help .cards', start: 'top 82%' } })
 
       gsap.from('.contact .head > *', { y: 36, opacity: 0, duration: 1, ease: E, stagger: 0.12, scrollTrigger: { trigger: '.contact', start: 'top 70%' } })
       gsap.from('.contact li', { opacity: 0, x: -30, duration: 0.9, ease: E, stagger: 0.14, scrollTrigger: { trigger: '.contact ul', start: 'top 85%' } })
