@@ -26,7 +26,7 @@ function doPost(e) {
     const primeiro = nome.split(/\s+/)[0];
     const fone = telefone.replace(/\D/g, '');
     const foneWa = (fone.length <= 11 ? '55' : '') + fone;
-    const textoWa = 'Olá, ' + primeiro + '! Aqui é a Dra. Debora de Almeida. Recebi o seu contato pelo site e vou ajudá-lo(a).';
+    const textoWa = 'Olá, ' + primeiro + '! Aqui é a Dra. Debora de Almeida. Recebi o seu contato pelo site. Como posso te ajudar?';
     const linkWa = 'https://wa.me/' + foneWa + '?text=' + encodeURIComponent(textoWa);
     const linkEmail = 'mailto:' + email + '?subject=' + encodeURIComponent('Retorno do seu contato — Debora de Almeida Advocacia');
     const linkTel = 'tel:+' + foneWa;
