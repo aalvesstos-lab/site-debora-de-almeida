@@ -310,4 +310,4 @@ section.help::before{background:linear-gradient(180deg,rgba(10,10,10,.8),rgba(10
 
 @media(min-width:861px){.hero .wrap{grid-template-columns:1.1fr 1fr}.portrait{justify-self:center;width:min(560px,64vh,40vw)}}
 
-@media(min-width:861px){.about .photo{width:fit-content;max-width:100%}.about .photo img{width:auto;max-width:100%;aspect-ratio:4/5;height:min(540px,calc(100svh - 165px));min-height:0;object-position:50% 50%}}
+@media(min-width:861px){.about .photo{width:fit-content;max-width:100%}.about .photo img{width:auto;max-width:100%;aspect-ratio:4/5;height:min(540px,calc(100svh - 165px))!important;min-height:0;object-position:50% 50%}}
