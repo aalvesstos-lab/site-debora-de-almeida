@@ -7,7 +7,9 @@
 
 const EMAIL_DESTINO = 'contato@deboradealmeida.adv.br';
 const EMAIL_TESTE = 'aalvesstos@gmail.com'; // usado só pela função autorizar()
-const ICONES = 'https://aalvesstos-lab.github.io/site-debora-de-almeida/email/'; // ícones dos botões
+// Ícones dos botões embutidos no e-mail (cid), para o Outlook não bloquear
+const ICON_WA = 'iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAGFBMVEX///////////////8AAAD////////////kTvUTAAAACHRSTlNgzCyPAPsEr7T9AqcAAAH9SURBVHjaLZDPS1RhGIWf+95bIqLO3FJIp9vn1+CiEMehVcU0wrQywqJVEEjQ/9MfIOGqFpGkJvQDbLClpOgus+vHxUgSnFGIaObOe1uM24dzOIfHqwHG7T04YP3oaaKAVwPRL/cB+PRIYvAtEn2dBoCr73pNE4Fo7wbyert/w3C3nIBXEyadbhtAGia9gAswnpMtawBNjVsuEYjmj3/YKAbEbgzdGlJhz7VDIwCaFN8Gm4j5yYGJYwBUKhQS0dm0rIV1C4AbM57xc63sdz4cOcwAsty/1qvAw57uDhHhAJJOmBPLMmOw0P3PFSqykFY1gFC6A0FdpSQOoOq6KW32SLVDksBidNak5X+P2rT65FKjC3InwwLoeF1jAwaAQOYAzXEqSHLGAJJRptUqiXGQSh2DFp2GcbKy5sCd948mDjPCkb/Nj2Pj1z/cwesXo8bgMsPMJnovEdeR27wAZYOgCgG71fOyTyjgijsAsekhlnFuOtDk8jJoWddo+lPfBtsZZGbw4su2d1KS3gC6DpyNa2K848yIuA7WArG1xg2wqP7gtWB4v2Eb0MjHSU+70AiiP9HOZx8LxIU8B+U4+DWQbj1MVwEKq9V2qHjPmgCMPmeqSLoy5/DOzcJ65czoUlVBSqy9meirA6RLlQjwn8w/zsvJ8PuZ/vl00u4D/wFKo820G9vq7QAAAABJRU5ErkJggg==';
+const ICON_MAIL = 'iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAGFBMVEUICAgHBwcJCQkJCQkAAAAREREJCQkICAixJ0FXAAAACHRSTlNfLar7AQ7SjYDNqjwAAAC+SURBVHjatdKxCoMwFIXhPzF7W+cuklmQ4CxCfe2CdK4iOEuXzuoDROygtmpdWtps+bgkuedGJKyX5HekgMNs34ACc55RWCFx5sI1QGKXJ6VIoHyBP94Yxc/L7ggksM+DQZxKjFWZUw2UB9lIbqpuAHVsven1pjAl+LrTz4Y6TRSrO6Z49WiPZBmXFACR9C1Arck9ALmbknBT663DMfotr674NOj9txNql9BvV6klxEi601zCApFsjZbmf5/pATVYLRjXn0wYAAAAAElFTkSuQmCC';
 
 function doPost(e) {
   try {
@@ -43,7 +45,11 @@ function doPost(e) {
       name: 'Site Debora de Almeida',
       subject: 'Novo contato pelo site — ' + nome,
       body: texto,
-      htmlBody: montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, linkTel)
+      htmlBody: montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, linkTel),
+      inlineImages: {
+        wa: Utilities.newBlob(Utilities.base64Decode(ICON_WA), 'image/png', 'wa.png'),
+        mail: Utilities.newBlob(Utilities.base64Decode(ICON_MAIL), 'image/png', 'mail.png')
+      }
     });
 
     return resposta({ ok: true });
@@ -59,10 +65,13 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
   const linha = (rot, val) =>
     '<tr><td width="110" valign="top" style="padding:10px 0;border-bottom:1px solid #eadfce;color:#9b7243;font-size:12px;' + F + 'text-transform:uppercase;letter-spacing:1px">' + rot +
     '</td><td valign="top" style="padding:10px 0;border-bottom:1px solid #eadfce;color:#141413;font-size:15px;' + F + '">' + val + '</td></tr>';
-  // Botão "à prova de Outlook": sem imagem, cor do texto fixada em <font> e <span>, altura fixa
-  const botao = (href, txt, cor, txtCor) =>
-    '<td width="49%" height="46" bgcolor="' + cor + '" align="center" valign="middle" style="background-color:' + cor + ';border:1px solid ' + cor + ';height:46px;padding:0 10px;' + F + 'font-size:14px;font-weight:bold;mso-line-height-rule:exactly;line-height:46px">' +
-    '<a href="' + href + '" style="color:' + txtCor + ';text-decoration:none;' + F + 'font-size:14px;font-weight:bold"><font color="' + txtCor + '"><span style="color:' + txtCor + ';text-decoration:none">' + txt + '</span></font></a></td>';
+  // Botão compatível com Outlook: ícone embutido (cid) + texto, altura fixa, cor do texto fixada
+  const botao = (href, txt, cor, txtCor, icone) =>
+    '<td width="49%" height="46" bgcolor="' + cor + '" align="center" valign="middle" style="background-color:' + cor + ';border:1px solid ' + cor + ';height:46px;padding:0 10px;' + F + 'font-size:14px;font-weight:bold">' +
+    '<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0"><tr>' +
+    '<td valign="middle" style="padding-right:8px"><a href="' + href + '"><img src="cid:' + icone + '" width="18" height="18" border="0" alt="" style="display:block;border:0"></a></td>' +
+    '<td valign="middle" style="' + F + 'font-size:14px;font-weight:bold;line-height:20px"><a href="' + href + '" style="color:' + txtCor + ';text-decoration:none;' + F + 'font-size:14px;font-weight:bold"><font color="' + txtCor + '"><span style="color:' + txtCor + ';text-decoration:none">' + txt + '</span></font></a></td>' +
+    '</tr></table></td>';
 
   return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#efe8dc" style="background-color:#efe8dc"><tr><td align="center" style="padding:24px 12px">' +
     '<table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:560px;background-color:#ffffff;border:1px solid #c9a06b">' +
@@ -77,9 +86,9 @@ function montarHtml(nome, telefone, email, assunto, quando, linkWa, linkEmail, l
     linha('Recebido', h(quando)) +
     '</table>' +
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:22px"><tr>' +
-    botao(linkWa, 'Chamar no WhatsApp', '#25d366', '#ffffff') +
+    botao(linkWa, 'Chamar no WhatsApp', '#25d366', '#ffffff', 'wa') +
     '<td width="2%" style="font-size:0;line-height:0">&nbsp;</td>' +
-    botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a') +
+    botao(linkEmail, 'Responder por e-mail', '#c9a06b', '#0a0a0a', 'mail') +
     '</tr></table>' +
     '<p style="margin:18px 0 0;color:#9b7243;font-size:12px;' + F + '">Aceite da Política de Privacidade: sim. Ao usar "Responder", a resposta vai direto para o e-mail do contato.</p>' +
     '</td></tr></table></td></tr></table>';
