@@ -367,12 +367,11 @@ export default function App() {
             <div className="eyebrow">Como posso ajudar você</div>
             <h2 className="h2">Soluções Jurídicas<br /><em className="gold-text">Exclusivas</em></h2>
           </div>
-          <div className="help-grid">
+          <div className="cards cards3">
             {C.ajuda.map(([t, d], i) => (
-              <article className="box" key={t}>
-                {[I.escudo, I.doc, I.pena][i]}
-                <h3>{t}</h3>
-                <p>{d}</p>
+              <article className="card" key={t} tabIndex={0}>
+                <div className="head">{[I.escudo, I.doc, I.pena][i]}<div><span className="n">{'0' + (i + 1)}</span><h3>{t}</h3></div></div>
+                <p className="resumo desc">{d}</p>
               </article>
             ))}
           </div>

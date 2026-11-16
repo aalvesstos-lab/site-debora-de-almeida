@@ -295,3 +295,5 @@ section.help::before{background:linear-gradient(180deg,rgba(10,10,10,.8),rgba(10
 #formulario{scroll-margin-top:96px}
 
 .contact .vermapa{display:block;width:fit-content;clear:both;margin-top:12px;font-style:normal;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-light);border-bottom:1px solid var(--gold);padding-bottom:2px;transition:color .3s}.contact li:hover .vermapa{color:var(--gold)}
+
+.cards3{grid-template-columns:repeat(3,1fr);margin-top:clamp(24px,6vh,70px)}.cards3 .card{min-height:0}.card .resumo.desc{display:block!important;font-size:.9rem;line-height:1.6}@media(max-width:900px){.cards3{grid-template-columns:1fr}}
